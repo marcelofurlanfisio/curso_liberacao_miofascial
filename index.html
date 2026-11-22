@@ -340,7 +340,7 @@ footer .metaline a{color:var(--text-link)}
 .lm-hero{row-gap:0;grid-template-columns:1fr;grid-template-areas:"top" "lead" "photo" "cta"}
 .h-top{grid-area:top}.h-lead{grid-area:lead}.h-photo{grid-area:photo}.h-cta{grid-area:cta}
 .h-cta .cta-row{margin-top:var(--sp-7)}.h-cta .metaline{margin-top:var(--sp-6)}
-@media (min-width:960px){.lm-hero{grid-template-columns:7fr 5fr;column-gap:var(--sp-11);grid-template-areas:"top photo" "lead photo" "cta photo";align-items:start}.h-photo{align-self:center}}
+@media (min-width:960px){.lm-hero{grid-template-columns:7fr 5fr;column-gap:var(--sp-11);grid-template-areas:"top photo" "lead photo" "cta photo";align-items:start}.h-photo{align-self:start}}
 @media (max-width:959px){.lm-hero{grid-template-columns:1fr 38%;column-gap:var(--sp-5);grid-template-areas:"top top" "lead photo" "cta cta";align-items:start}.h-photo .tag{display:none}.h-lead{font-size:var(--fs-body-sm);line-height:1.55}.h-photo .foto .ph i,.h-photo .foto .ph small{display:none}}
 
 /* Destaques em cartão, com ícones */
@@ -349,7 +349,7 @@ footer .metaline a{color:var(--text-link)}
 @media (max-width:560px){.highlights{padding:var(--sp-6) var(--sp-5)}}
 .highlights li{display:flex;gap:var(--sp-4);align-items:center}
 .hi-ic{flex:0 0 52px;height:52px;border-radius:50%;background:var(--c-clay-100);color:var(--c-clay-700);display:inline-flex;align-items:center;justify-content:center}
-.hi-ic svg{width:24px;height:24px}
+.hi-ic svg{width:28px;height:28px}
 .highlights b{display:block;font-family:var(--font-display);font-size:21px;font-weight:600;color:var(--text-heading);line-height:1.2}
 .highlights div span{display:block;font-size:var(--fs-label);color:var(--text-body);margin-top:2px}
 
@@ -361,7 +361,8 @@ footer .metaline a{color:var(--text-link)}
 .truth .myths{margin-top:var(--sp-6)}
 .truth .myths span{background:rgba(255,255,255,.06);color:var(--c-navy-200);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);text-decoration-color:var(--c-clay-500)}
 .truth-p{font-size:var(--fs-body-lg);max-width:60ch}
-.truth .big-quote{font-size:clamp(22px,2.6vw,28px)}
+.truth .big-quote{font-size:clamp(22px,2.6vw,30px)}
+.truth-quote{grid-column:1/-1;max-width:none;margin-top:0}
 
 /* Método com título em uma linha e fotos nos cartões */
 .metodo-head h2{max-width:none;font-size:clamp(30px,3.1vw,42px)}
@@ -371,6 +372,7 @@ footer .metaline a{color:var(--text-link)}
 .step.has-photo .foto .ph{border-radius:0}
 
 /* Números do professor maiores */
+#professor .prof{align-items:start}
 #professor .stats{gap:var(--sp-11)}
 #professor .stats div b{font-size:clamp(52px,6vw,72px);letter-spacing:-0.02em}
 #professor .stats div span{font-size:var(--fs-body-sm)}
@@ -498,7 +500,7 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
 <div class="wrap">
   <ul class="highlights">
     <li><span class="hi-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></span><div><b>Hands On</b><span>80% do curso é prática na maca</span></div></li>
-    <li><span class="hi-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.409 13.017A5 5 0 0 1 22 15c0 3.866-4 7-9 7-4.077 0-8.153-.82-10.371-2.462-.426-.316-.631-.832-.62-1.362C2.118 12.723 2.627 2 10 2a3 3 0 0 1 3 3 2 2 0 0 1-2 2c-1.105 0-1.64-.444-2-1"/><path d="M15 14a5 5 0 0 0-7.584 2"/><path d="M9.964 6.825C8.019 7.977 9.5 13 8 15"/></svg></span><div><b>Anatomia em peças reais</b><span>revisão no laboratório da UniMetrocamp</span></div></li>
+    <li><span class="hi-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-38 12 12)"><path d="M0.8 12h3.4"/><path d="M19.8 12h3.4"/><path d="M0.8 10.6v2.8"/><path d="M23.2 10.6v2.8"/><path d="M4.2 12c2.6-7.2 13-7.2 15.6 0-2.6 7.2-13 7.2-15.6 0z"/><path d="M7 10.3c3.3-1.6 6.7-1.6 10 0"/><path d="M7 13.7c3.3 1.6 6.7 1.6 10 0"/></g></svg></span><div><b>Anatomia em peças reais</b><span>revisão no laboratório da UniMetrocamp</span></div></li>
     <li><span class="hi-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 5h17a1.5 1.5 0 0 1 1.5 1.5V10c0 5.5-4.5 9-10 9S2 15.5 2 10V6.5A1.5 1.5 0 0 1 3.5 5z"/><circle cx="6.3" cy="9.5" r="1.9"/><circle cx="10.1" cy="9.5" r="1.9"/><circle cx="13.9" cy="9.5" r="1.9"/><circle cx="17.7" cy="9.5" r="1.9"/></svg></span><div><b>Técnicas versáteis</b><span>manuais e instrumentais</span></div></li>
   </ul>
 </div>
@@ -512,9 +514,9 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
       <div class="myths"><span>solta aderências</span><span>quebra fibroses</span><span>alonga a fáscia</span></div>
       <div class="rule" aria-hidden="true"></div>
       <p class="truth-p">A mão humana não tem força para deformar uma fáscia densa como a fáscia lata. Isso já foi calculado. E mesmo assim a técnica funciona, por outros mecanismos.</p>
-      <p class="big-quote">Quem entende esses motivos aplica melhor, escolhe melhor quando usar e explica melhor para o paciente. É isso que você aprende neste curso.</p>
     </div>
     <figure class="foto" data-foto="LM-10" data-ar="4/3" data-desc="Você em aula, explicando para a turma"></figure>
+    <p class="big-quote truth-quote">Quem entende esses motivos aplica melhor, escolhe melhor quando usar e explica melhor para o paciente. É isso que você aprende neste curso.</p>
   </div>
 </section>
 
@@ -846,8 +848,8 @@ const CONFIG = {
   horario: "das 8h às 18h",
   local: "Campinas, SP",
   vagas: "",              // opcional. Ex. "20". Vazio = mostra só "Vagas limitadas"
-  valor: "380,00",
-  condicao: "no PIX, em até 2x de R$ 190,00, ou R$ 400,00 em até 4x no cartão de crédito"
+  valor: "400,00",
+  condicao: "em até 4x no cartão de crédito, ou R$ 380,00 com desconto no PIX, em até 2x de R$ 190,00"
 };
 
 /* ================== FORMULÁRIO ==================
