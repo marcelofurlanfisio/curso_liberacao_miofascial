@@ -334,6 +334,8 @@ footer .metaline a{color:var(--text-link)}
 .sticky-cta .btn{flex:0 0 auto}
 @media (min-width:900px){.sticky-cta{left:auto;right:24px;bottom:24px;border-radius:var(--radius-xl);max-width:460px;padding:14px 16px 14px 22px}}
 
+.hero-photo .foto img{object-position:50% 20%}
+#professor .foto img{object-position:50% 30%}
 .myths{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-7)}
 .myths span{font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);color:var(--c-ink-500);background:var(--surface-card);box-shadow:var(--shadow-xs);border-radius:var(--radius-pill);padding:10px 22px;text-decoration:line-through;text-decoration-color:var(--c-clay-600);text-decoration-thickness:2px}
 .mods.four{grid-template-columns:1fr}
@@ -835,7 +837,14 @@ const CURSO_DA_PAGINA = "Liberação Miofascial";
    Coloque as fotos na pasta "fotos" e escreva o nome do arquivo no código da foto.
    Ex. "LM-01": {arquivo:"lm-hero.jpg", legenda:"Prática de liberação manual"} */
 const FOTOS = {
+  "LM-01": {arquivo:"lm-01-pratica.jpg", legenda:""},
+  "LM-02": {arquivo:"lm-02-cervical.jpg", legenda:""},
+  "LM-06": {arquivo:"lm-06-professor.jpg", legenda:""}
 };
+/* true = espaços sem foto somem da página publicada. false = aparecem os quadros com o código */
+const ESCONDER_FOTOS_VAZIAS = true;
+/* As fotos das regiões (LM-02 a LM-05) só aparecem quando as quatro estiverem preenchidas, para os cartões ficarem iguais */
+if (!["LM-02","LM-03","LM-04","LM-05"].every(k => FOTOS[k] && FOTOS[k].arquivo)) ["LM-02","LM-03","LM-04","LM-05"].forEach(k => delete FOTOS[k]);
 </script>
 <script>
 /* Números que sobem até o valor final quando aparecem na tela */
@@ -982,6 +991,7 @@ const FOTOS = {
     ph.className = 'ph';
     ph.innerHTML = '<b>' + cod + '</b><i>' + (fig.dataset.desc || '') + '</i>' + (fig.dataset.ar ? '<small>proporção ' + fig.dataset.ar.replace('/', ':') + '</small>' : '');
     fig.appendChild(ph);
+    if (!(f && f.arquivo) && typeof ESCONDER_FOTOS_VAZIAS !== 'undefined' && ESCONDER_FOTOS_VAZIAS) { fig.remove(); return; }
     if (f && f.arquivo) {
       const img = new Image();
       img.src = 'fotos/' + f.arquivo; img.alt = f.legenda || fig.dataset.desc || ''; img.loading = 'lazy';
