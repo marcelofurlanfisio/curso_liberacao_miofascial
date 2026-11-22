@@ -1,0 +1,1 @@
+Coloque aqui as fotos da página. O nome de cada arquivo vai no bloco FOTOS do index.html, no código da foto (LM-01 a LM-06).
