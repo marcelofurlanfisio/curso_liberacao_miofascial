@@ -334,6 +334,46 @@ footer .metaline a{color:var(--text-link)}
 .sticky-cta .btn{flex:0 0 auto}
 @media (min-width:900px){.sticky-cta{left:auto;right:24px;bottom:24px;border-radius:var(--radius-xl);max-width:460px;padding:14px 16px 14px 22px}}
 
+
+/* Hero com foto ao lado da introdução no celular */
+.hero{padding-bottom:var(--sp-9)}
+.lm-hero{row-gap:0;grid-template-columns:1fr;grid-template-areas:"top" "lead" "photo" "cta"}
+.h-top{grid-area:top}.h-lead{grid-area:lead}.h-photo{grid-area:photo}.h-cta{grid-area:cta}
+.h-cta .cta-row{margin-top:var(--sp-7)}.h-cta .metaline{margin-top:var(--sp-6)}
+@media (min-width:960px){.lm-hero{grid-template-columns:7fr 5fr;column-gap:var(--sp-11);grid-template-areas:"top photo" "lead photo" "cta photo";align-items:start}.h-photo{align-self:center}}
+@media (max-width:959px){.lm-hero{grid-template-columns:1fr 38%;column-gap:var(--sp-5);grid-template-areas:"top top" "lead photo" "cta cta";align-items:start}.h-photo .tag{display:none}.h-lead{font-size:var(--fs-body-sm);line-height:1.55}.h-photo .foto .ph i,.h-photo .foto .ph small{display:none}}
+
+/* Destaques em cartão, com ícones */
+.highlights{list-style:none;margin:0 0 -56px;padding:var(--sp-6) var(--sp-7);background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-md);display:grid;gap:var(--sp-5);position:relative;z-index:2}
+@media (min-width:860px){.highlights{grid-template-columns:repeat(3,1fr);gap:var(--sp-7);padding:var(--sp-7) var(--sp-8)}}
+@media (max-width:560px){.highlights{padding:var(--sp-6) var(--sp-5)}}
+.highlights li{display:flex;gap:var(--sp-4);align-items:center}
+.hi-ic{flex:0 0 52px;height:52px;border-radius:50%;background:var(--c-clay-100);color:var(--c-clay-700);display:inline-flex;align-items:center;justify-content:center}
+.hi-ic svg{width:24px;height:24px}
+.highlights b{display:block;font-family:var(--font-display);font-size:21px;font-weight:600;color:var(--text-heading);line-height:1.2}
+.highlights div span{display:block;font-size:var(--fs-label);color:var(--text-body);margin-top:2px}
+
+/* A verdade, com foto */
+.truth{padding-top:calc(var(--sp-13) + 56px)}
+.truth-grid{display:grid;gap:var(--sp-9);align-items:center}
+@media (min-width:960px){.truth-grid{grid-template-columns:7fr 5fr;gap:var(--sp-11)}}
+.truth h2{font-size:clamp(28px,3.6vw,var(--fs-h2));margin-top:var(--sp-3);max-width:24ch}
+.truth .myths{margin-top:var(--sp-6)}
+.truth .myths span{background:rgba(255,255,255,.06);color:var(--c-navy-200);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);text-decoration-color:var(--c-clay-500)}
+.truth-p{font-size:var(--fs-body-lg);max-width:60ch}
+.truth .big-quote{font-size:clamp(22px,2.6vw,28px)}
+
+/* Método com título em uma linha e fotos nos cartões */
+.metodo-head h2{max-width:none;font-size:clamp(30px,3.1vw,42px)}
+@media (min-width:1180px){.metodo-head h2{white-space:nowrap}}
+.step.has-photo{overflow:hidden;padding-top:0}
+.step.has-photo .foto{margin:0 calc(-1*var(--sp-7)) var(--sp-5);border-radius:0}
+.step.has-photo .foto .ph{border-radius:0}
+
+/* Números do professor maiores */
+#professor .stats{gap:var(--sp-11)}
+#professor .stats div b{font-size:clamp(52px,6vw,72px);letter-spacing:-0.02em}
+#professor .stats div span{font-size:var(--fs-body-sm)}
 .hero-photo .foto img{object-position:50% 20%}
 #professor .foto img{object-position:50% 30%}
 .myths{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-7)}
@@ -433,87 +473,73 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
 
 <!-- 1. HERO -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
+  <div class="wrap hero-grid lm-hero">
+    <div class="h-top">
       <div class="eyebrow">Curso presencial de Liberação Miofascial</div>
       <h1>Pare de “soltar a fáscia”. <em>Comece a tratar com evidência.</em></h1>
       <div class="rule" aria-hidden="true"></div>
-      <p class="lead">Um dia inteiro de prática, com revisão em laboratório de anatomia, técnica manual e instrumental e o efeito medido antes e depois em cada região. Para fisioterapeutas e estudantes que querem resultado na maca e segurança no discurso e na prática.</p>
+    </div>
+    <p class="lead h-lead">Um dia inteiro de prática, com revisão em laboratório de anatomia, técnica manual e instrumental e o efeito medido antes e depois em cada região. Para fisioterapeutas e estudantes que querem resultado na maca e segurança no discurso e na prática.</p>
+    <div class="hero-photo h-photo">
+      <figure class="foto" data-foto="LM-01" data-ar="4/5" data-desc="Você aplicando liberação miofascial manual em um aluno, com a turma observando"></figure>
+      <div class="tag"><b>80%</b><span>do curso é prática supervisionada na maca</span></div>
+    </div>
+    <div class="h-cta">
       <div class="cta-row">
         <a class="btn btn-primary btn-xl" href="#lista-espera">Quero garantir a minha vaga <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         <a class="btn btn-secondary btn-lg" href="#metodo">Saiba mais sobre o curso</a>
       </div>
       <div class="metaline"><span data-cfg="data" data-ph="[Data]"></span><span data-cfg="horario" data-ph="[Horário]"></span><span data-cfg="local" data-ph="[Local]"></span></div>
     </div>
-    <div class="hero-photo">
-      <figure class="foto" data-foto="LM-01" data-ar="4/5" data-desc="Você aplicando liberação miofascial manual em um aluno, com a turma observando"></figure>
-      <div class="tag"><b>80%</b><span>do curso é prática supervisionada na maca</span></div>
-    </div>
   </div>
 </section>
 
-<!-- 2. FATOS -->
-<div class="facts">
-  <div class="wrap">
-    <ul>
-      <li><b>Hands On</b><span>80% prático</span></li>
-      <li><b>Anatomia em peças reais</b><span>revisão no laboratório da UniMetrocamp</span></li>
-      <li><b>Técnicas versáteis</b><span>manuais e instrumentais</span></li>
-    </ul>
-  </div>
+<!-- 2. DESTAQUES -->
+<div class="wrap">
+  <ul class="highlights">
+    <li><span class="hi-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></span><div><b>Hands On</b><span>80% do curso é prática na maca</span></div></li>
+    <li><span class="hi-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg></span><div><b>Anatomia em peças reais</b><span>revisão no laboratório da UniMetrocamp</span></div></li>
+    <li><span class="hi-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><div><b>Técnicas versáteis</b><span>manuais e instrumentais</span></div></li>
+  </ul>
 </div>
 
-<!-- 3. CURIOSIDADE -->
-<section class="sec">
-  <div class="wrap">
-    <div class="pain-grid" style="margin-top:0">
-      <div>
-        <div class="eyebrow">Seja sincero</div>
-        <h2 style="font-size:clamp(28px,3.6vw,var(--fs-h2));margin-top:var(--sp-3)">Você saberia explicar como a liberação funciona?</h2>
-        <div class="rule" aria-hidden="true"></div>
-        <p class="lead">Você provavelmente já ouviu que a liberação miofascial</p>
-        <div class="myths"><span>solta aderências</span><span>quebra fibroses</span><span>derrete a fáscia</span></div>
-      </div>
-      <div class="prose">
-        <p><strong>Se a resposta trava, o problema não é a técnica.</strong> É a explicação que te ensinaram. E ela muda o jeito como você aplica, quando você usa e o que você promete ao paciente.</p>
-        <div class="inline-cta"><a class="btn btn-primary btn-lg" href="#lista-espera">Quero saber explicar e aplicar <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. A VERDADE -->
-<section class="sec register-deep">
-  <div class="wrap">
-    <div class="sec-head">
+<!-- 3. A VERDADE -->
+<section class="sec register-deep truth">
+  <div class="wrap truth-grid">
+    <div>
       <div class="eyebrow">A verdade que pouca gente ensina</div>
       <h2>A técnica funciona. Só que não pelo motivo que te contaram.</h2>
+      <div class="myths"><span>solta aderências</span><span>quebra fibroses</span><span>derrete a fáscia</span></div>
       <div class="rule" aria-hidden="true"></div>
-      <p>A mão humana não tem força para deformar uma fáscia densa como a fáscia lata. Isso já foi calculado. E mesmo assim a técnica funciona, por outros mecanismos.</p>
+      <p class="truth-p">A mão humana não tem força para deformar uma fáscia densa como a fáscia lata. Isso já foi calculado. E mesmo assim a técnica funciona, por outros mecanismos.</p>
+      <p class="big-quote">Quem entende esses motivos aplica melhor, escolhe melhor quando usar e explica melhor para o paciente. É isso que você aprende neste curso.</p>
     </div>
-    <p class="big-quote">Quem entende esses motivos aplica melhor, escolhe melhor quando usar e explica melhor para o paciente. É isso que você aprende neste curso.</p>
+    <figure class="foto" data-foto="LM-10" data-ar="4/3" data-desc="Você em aula, explicando para a turma"></figure>
   </div>
 </section>
 
-<!-- 5. MÉTODO -->
+<!-- 4. MÉTODO -->
 <section class="sec" id="metodo">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center metodo-head">
       <div class="eyebrow">O que faz este curso ser diferente</div>
-      <h2>Aqui a técnica vem junto com o porquê</h2>
+      <h2>Aqui a técnica vem junto com o raciocínio clínico</h2>
       <div class="rule" aria-hidden="true"></div>
-      <p>Cada região segue o mesmo roteiro. Você não sai somente acreditando que funciona. Você sai sabendo avaliar, tratar e reavaliar.</p>
+      <p>Cada região segue o mesmo roteiro. Você não sai somente sabendo uma porção de técnicas. Você sai sabendo avaliar, tratar e reavaliar.</p>
     </div>
     <div class="steps">
-      <article class="step">
+      <article class="step has-photo">
+        <figure class="foto" data-foto="LM-07" data-ar="4/3" data-desc="Alunos no laboratório de anatomia, em volta da peça"></figure>
         <h3>Anatomia</h3>
         <p>Revisão no laboratório, com peças reais, para localizar com precisão cada estrutura que vai tratar e saber onde nunca colocar pressão ou instrumento.</p>
       </article>
-      <article class="step">
+      <article class="step has-photo">
+        <figure class="foto" data-foto="LM-08" data-ar="4/3" data-desc="Uma técnica de liberação sendo aplicada (manual ou instrumental)"></figure>
         <h3>Técnica</h3>
         <p>Técnica manual como protagonista e instrumental como alternativa para poupar as suas mãos.</p>
       </article>
-      <article class="step">
+      <article class="step has-photo">
+        <figure class="foto" data-foto="LM-09" data-ar="4/3" data-desc="Um teste antes e depois (ex. flexibilidade ou amplitude)"></figure>
         <h3>Teste</h3>
         <p>Uma medida simples antes e depois mostra o efeito na hora. E um exercício para manter o ganho depois da sessão.</p>
       </article>
@@ -567,7 +593,6 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
         <div class="mod-body"><div class="eyebrow">Região 04</div><h3>Antebraço</h3><p>Extensores e flexores do punho.</p></div>
       </article>
     </div>
-    <div class="inline-cta" style="text-align:center"><a class="btn btn-secondary btn-lg" href="#para-quem">Veja para quem é o curso <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
   </div>
 </section>
 
@@ -839,29 +864,32 @@ const CURSO_DA_PAGINA = "Liberação Miofascial";
 const FOTOS = {
   "LM-01": {arquivo:"lm-01-pratica.jpg", legenda:""},
   "LM-02": {arquivo:"lm-02-cervical.jpg", legenda:""},
-  "LM-06": {arquivo:"lm-06-professor.jpg", legenda:""}
+  "LM-06": {arquivo:"lm-06-professor.jpg", legenda:""},
+  "LM-10": {arquivo:"lm-10-turma.jpg", legenda:""}
 };
-/* true = espaços sem foto somem da página publicada. false = aparecem os quadros com o código */
-const ESCONDER_FOTOS_VAZIAS = true;
-/* As fotos das regiões (LM-02 a LM-05) só aparecem quando as quatro estiverem preenchidas, para os cartões ficarem iguais */
-if (!["LM-02","LM-03","LM-04","LM-05"].every(k => FOTOS[k] && FOTOS[k].arquivo)) ["LM-02","LM-03","LM-04","LM-05"].forEach(k => delete FOTOS[k]);
+/* No site publicado (github.io) os espaços sem foto somem. Na prévia aparecem os quadros com o código */
+const AO_VIVO = /github\.io$/.test(location.hostname);
+const ESCONDER_FOTOS_VAZIAS = AO_VIVO;
+/* Fotos em grupo só aparecem no site quando o grupo inteiro estiver preenchido, para os cartões ficarem iguais */
+const GRUPOS_DE_FOTOS = [["LM-02","LM-03","LM-04","LM-05"], ["LM-07","LM-08","LM-09"]];
+if (AO_VIVO) GRUPOS_DE_FOTOS.forEach(g => { if (!g.every(k => FOTOS[k] && FOTOS[k].arquivo)) g.forEach(k => delete FOTOS[k]); });
 </script>
 <script>
 /* Números que sobem até o valor final quando aparecem na tela */
 (function(){
   const els = document.querySelectorAll('[data-count]');
-  if (!els.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!els.length || !('IntersectionObserver' in window)) return;
   els.forEach(el => el.textContent = (el.dataset.prefix || '') + '0');
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     io.unobserve(e.target);
-    const el = e.target, fim = Number(el.dataset.count), pre = el.dataset.prefix || '', dur = 1600, t0 = performance.now();
+    const el = e.target, fim = Number(el.dataset.count), pre = el.dataset.prefix || '', dur = 2200, t0 = performance.now();
     (function passo(t){
-      const k = Math.min(1, (t - t0) / dur), v = Math.round(fim * (1 - Math.pow(1 - k, 3)));
+      const k = Math.min(1, (t - t0) / dur), v = Math.round(fim * (1 - Math.pow(1 - k, 2)));
       el.textContent = pre + v;
       if (k < 1) requestAnimationFrame(passo);
     })(t0);
-  }), {threshold: 0.6});
+  }), {threshold: 0.3});
   els.forEach(el => io.observe(el));
 })();
 
