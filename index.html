@@ -341,8 +341,9 @@ footer .metaline a{color:var(--text-link)}
 .mods.four .mod-body{padding:var(--sp-6)}
 .mods.four h3{font-size:24px}
 /* Ajustes desta página */
-@media (min-width:900px){.facts ul{grid-template-columns:repeat(4,1fr)}}
-@media (max-width:899px){.facts li:last-child{grid-column:auto}.facts li:nth-last-child(-n+2){border-bottom:0}}
+@media (min-width:900px){.facts ul{grid-template-columns:repeat(3,1fr)}}
+.offer-grid.top{margin-top:0}
+.offer-grid.top .stack{margin-top:var(--sp-8)}
 .fit{grid-template-columns:1fr !important}
 .fit .yes li:first-child{margin-top:0}
 .price-card .btn-xl{white-space:normal;line-height:1.25}
@@ -421,9 +422,6 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
       <div class="lockup-role">Fisioterapeuta Osteopata D.O.</div>
     </div>
     <div class="topbar-right">
-      <nav aria-label="Seções">
-        <a href="#metodo">O método</a><a href="#regioes">Regiões</a><a href="#professor">Professor</a><a href="#perguntas">Dúvidas</a>
-      </nav>
       <a class="btn btn-primary btn-sm" href="#lista-espera">Garanta a sua vaga</a>
     </div>
   </div>
@@ -456,10 +454,9 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
 <div class="facts">
   <div class="wrap">
     <ul>
-      <li><b>Curso 80% prático</b><span>quase o dia inteiro na maca</span></li>
-      <li><b>Certificado</b><span>de conclusão de curso</span></li>
-      <li><b>Laboratório</b><span>de anatomia da UniMetrocamp</span></li>
-      <li><b>Manual e instrumental</b><span>instrumentos inclusos na prática</span></li>
+      <li><b>Hands On</b><span>80% prático</span></li>
+      <li><b>Anatomia em peças reais</b><span>revisão no laboratório da UniMetrocamp</span></li>
+      <li><b>Técnicas versáteis</b><span>manuais e instrumentais</span></li>
     </ul>
   </div>
 </div>
@@ -476,7 +473,6 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
         <div class="myths"><span>solta aderências</span><span>quebra fibroses</span><span>derrete a fáscia</span></div>
       </div>
       <div class="prose">
-        <p>Agora imagine o seu paciente perguntando como isso funciona. Ou um colega mais crítico. Ou um professor.</p>
         <p><strong>Se a resposta trava, o problema não é a técnica.</strong> É a explicação que te ensinaram. E ela muda o jeito como você aplica, quando você usa e o que você promete ao paciente.</p>
         <div class="inline-cta"><a class="btn btn-primary btn-lg" href="#lista-espera">Quero saber explicar e aplicar <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
       </div>
@@ -504,21 +500,18 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
       <div class="eyebrow">O que faz este curso ser diferente</div>
       <h2>Aqui a técnica vem junto com o porquê</h2>
       <div class="rule" aria-hidden="true"></div>
-      <p>Cada região segue o mesmo roteiro. Você não sai acreditando que funciona. Você sai sabendo avaliar, tratar e reavaliar.</p>
+      <p>Cada região segue o mesmo roteiro. Você não sai somente acreditando que funciona. Você sai sabendo avaliar, tratar e reavaliar.</p>
     </div>
     <div class="steps">
       <article class="step">
-        <div class="n">Passo 01</div>
         <h3>Anatomia</h3>
         <p>Revisão no laboratório, com peças reais, para localizar com precisão cada estrutura que vai tratar e saber onde nunca colocar pressão ou instrumento.</p>
       </article>
       <article class="step">
-        <div class="n">Passo 02</div>
         <h3>Técnica</h3>
         <p>Técnica manual como protagonista e instrumental como alternativa para poupar as suas mãos.</p>
       </article>
       <article class="step">
-        <div class="n">Passo 03</div>
         <h3>Teste</h3>
         <p>Uma medida simples antes e depois mostra o efeito na hora. E um exercício para manter o ganho depois da sessão.</p>
       </article>
@@ -550,7 +543,7 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">O que você vai praticar</div>
-      <h2>Quatro regiões, em duplas, com correção de perto</h2>
+      <h2>Quatro regiões, com correção de perto</h2>
       <div class="rule" aria-hidden="true"></div>
       <p>Em cada região você aprende a técnica, os cuidados anatômicos, a dose e o exercício que mantém o ganho depois da sessão.</p>
     </div>
@@ -611,8 +604,8 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
         <li>Professor de graduação e de pós-graduação em Ortopedia e Terapia Manual</li>
       </ul>
       <div class="stats">
-        <div><b>+20</b><span>anos de clínica</span></div>
-        <div><b data-cfg="alunosFormados" data-ph="[nº]"></b><span>alunos formados</span></div>
+        <div><b data-count="20" data-prefix="+">+20</b><span>anos de clínica</span></div>
+        <div><b data-count="200" data-prefix="+">+200</b><span>alunos formados</span></div>
       </div>
     </div>
   </div>
@@ -621,13 +614,13 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
 <!-- 11. OFERTA E LISTA DE ESPERA -->
 <section class="sec register-deep" id="investimento">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Investimento</div>
-      <h2>Tudo o que está incluso</h2>
-      <div class="rule" aria-hidden="true"></div>
-    </div>
-    <div class="offer-grid">
+    <div class="offer-grid top">
       <div>
+        <div class="sec-head">
+          <div class="eyebrow">Investimento</div>
+          <h2>Tudo o que está incluso</h2>
+          <div class="rule" aria-hidden="true"></div>
+        </div>
         <ul class="stack">
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg><div><b>Curso presencial</b><small>80% prático</small></div></li>
           <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><div><b>Revisão no laboratório de anatomia da UniMetrocamp</b></div></li>
@@ -645,7 +638,7 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
         <p class="info-wa">Mais informações sobre o curso serão comunicadas em breve. Para outras informações, entre em contato pelo <a href="https://wa.me/5519981688086?text=Ol%C3%A1%2C%20Prof.%20Marcelo!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso%20de%20Libera%C3%A7%C3%A3o%20Miofascial." target="_blank" rel="noopener">WhatsApp (19) 98168-8086</a>.</p>
         <ul class="secure">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><span data-cfg="data" data-ph="[Data]"></span>, <span data-cfg="horario" data-ph="[Horário]"></span></span></li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span data-cfg="local" data-ph="[Local]"></span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>UniMetrocamp · <a href="https://www.google.com/maps/search/?api=1&query=UniMetrocamp+Rua+Dr.+Sales+de+Oliveira+1661+Campinas+SP" target="_blank" rel="noopener">Rua Dr. Sales de Oliveira, 1661, Vila Industrial, Campinas, SP</a></span></li>
         </ul>
       </div>
     </div>
@@ -827,8 +820,7 @@ const CONFIG = {
   local: "Campinas, SP",
   vagas: "",              // opcional. Ex. "20". Vazio = mostra só "Vagas limitadas"
   valor: "380,00",
-  condicao: "no PIX, em até 2x de R$ 190,00, ou R$ 400,00 em até 4x no cartão de crédito",
-  alunosFormados: "+200"
+  condicao: "no PIX, em até 2x de R$ 190,00, ou R$ 400,00 em até 4x no cartão de crédito"
 };
 
 /* ================== FORMULÁRIO ==================
@@ -846,6 +838,24 @@ const FOTOS = {
 };
 </script>
 <script>
+/* Números que sobem até o valor final quando aparecem na tela */
+(function(){
+  const els = document.querySelectorAll('[data-count]');
+  if (!els.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  els.forEach(el => el.textContent = (el.dataset.prefix || '') + '0');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    io.unobserve(e.target);
+    const el = e.target, fim = Number(el.dataset.count), pre = el.dataset.prefix || '', dur = 1600, t0 = performance.now();
+    (function passo(t){
+      const k = Math.min(1, (t - t0) / dur), v = Math.round(fim * (1 - Math.pow(1 - k, 3)));
+      el.textContent = pre + v;
+      if (k < 1) requestAnimationFrame(passo);
+    })(t0);
+  }), {threshold: 0.6});
+  els.forEach(el => io.observe(el));
+})();
+
 /* Pop-up de privacidade */
 (function(){
   const modal = document.getElementById('privacidade');
