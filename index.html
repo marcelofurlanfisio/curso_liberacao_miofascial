@@ -481,17 +481,14 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
   .truth-grid .truth-quote{grid-area:quote;margin-top:var(--sp-7)}
 }
 @media (max-width:899px){
-  /* Método, dois cartões lado a lado e o terceiro na largura toda */
-  .steps{grid-template-columns:1fr 1fr;gap:var(--sp-3)}
-  .step{--pad:14px;padding:0 var(--pad) var(--pad)}
-  .step.has-photo .foto{margin:0 calc(-1*var(--pad)) var(--sp-3)}
-  .step h3{font-size:19px}
-  .step p{font-size:13px;line-height:1.5;margin-top:var(--sp-2)}
-  .step .foto .ph i,.step .foto .ph small{display:none}
-  .steps .step:nth-child(3){grid-column:1 / -1;display:grid;grid-template-columns:44% 1fr;column-gap:var(--pad);align-items:center;padding:0 var(--pad) 0 0}
-  .steps .step:nth-child(3) .foto{grid-row:1 / span 2;margin:0;height:100%;aspect-ratio:auto;min-height:150px}
-  .steps .step:nth-child(3) h3{align-self:end;padding-top:var(--pad)}
-  .steps .step:nth-child(3) p{align-self:start;padding-bottom:var(--pad)}
+  /* Método, cartões um embaixo do outro, com a foto ao lado do texto */
+  .steps{grid-template-columns:1fr;gap:var(--sp-3)}
+  .step{--pad:16px}
+  .steps .step{display:grid;grid-template-columns:42% 1fr;column-gap:var(--pad);align-items:center;padding:0 var(--pad) 0 0}
+  .steps .step .foto{grid-row:1 / span 2;margin:0;height:100%;aspect-ratio:auto;min-height:150px;border-radius:0}
+  .steps .step .foto .ph i,.steps .step .foto .ph small{display:none}
+  .steps .step h3{font-size:19px;align-self:end;padding-top:var(--pad)}
+  .steps .step p{font-size:13px;line-height:1.5;margin-top:var(--sp-2);align-self:start;padding-bottom:var(--pad)}
 
   /* Professor, foto ao lado do nome */
   #professor .prof{grid-template-columns:1fr 38%;column-gap:var(--sp-5);row-gap:0;
@@ -506,6 +503,17 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
   #professor .prof .stats{grid-area:stats;gap:var(--sp-9)}
   #professor .prof > .foto{grid-area:photo;align-self:start;margin-top:var(--sp-3)}
   #professor .prof > .foto .ph i,#professor .prof > .foto .ph small{display:none}
+}
+
+@media (max-width:699px){
+  /* Regiões, cartões um embaixo do outro, com a foto ao lado do texto */
+  .mods.four{gap:var(--sp-3)}
+  .mods.four .mod{display:grid;grid-template-columns:42% 1fr;align-items:center}
+  .mods.four .mod .foto{height:100%;aspect-ratio:auto;min-height:150px}
+  .mods.four .mod .foto .ph i,.mods.four .mod .foto .ph small{display:none}
+  .mods.four .mod-body{padding:var(--sp-4);gap:var(--sp-2)}
+  .mods.four .mod-body h3{font-size:19px}
+  .mods.four .mod-body p{font-size:13px;line-height:1.5}
 }
 </style>
 </head>
