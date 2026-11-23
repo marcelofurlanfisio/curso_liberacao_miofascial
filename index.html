@@ -367,7 +367,7 @@ footer .metaline a{color:var(--text-link)}
 
 /* Método com título em uma linha e fotos nos cartões */
 .metodo-head h2{max-width:none;font-size:clamp(30px,3.1vw,42px)}
-@media (min-width:1180px){.metodo-head h2{white-space:nowrap}}
+.sec-head.center.metodo-head h2{max-width:none}
 .step.has-photo{overflow:hidden;padding-top:0}
 .step.has-photo .foto{margin:0 calc(-1*var(--sp-7)) var(--sp-5);border-radius:0}
 .step.has-photo .foto .ph{border-radius:0}
@@ -866,8 +866,14 @@ const CURSO_DA_PAGINA = "Liberação Miofascial";
    Ex. "LM-01": {arquivo:"lm-hero.jpg", legenda:"Prática de liberação manual"} */
 const FOTOS = {
   "LM-01": {arquivo:"lm-01-pratica.jpg", legenda:""},
-  "LM-02": {arquivo:"lm-02-cervical.jpg", legenda:""},
-  "LM-06": {arquivo:"lm-06-professor.jpg", legenda:""},
+  "LM-02": {arquivo:"lm-02-palpacao-cervical.jpg", legenda:""},
+  "LM-03": {arquivo:"lm-03-tratamento-lombar.jpg", legenda:""},
+  "LM-04": {arquivo:"lm-04-membro-inferior.jpg", legenda:""},
+  "LM-05": {arquivo:"lm-05-membro-superior.jpg", legenda:""},
+  "LM-06": {arquivo:"lm-06-professor-v2.jpg", legenda:""},
+  "LM-07": {arquivo:"lm-07-laboratorio.jpg", legenda:""},
+  "LM-08": {arquivo:"lm-02-cervical.jpg", legenda:""},
+  "LM-09": {arquivo:"lm-09-teste.jpg", legenda:""},
   "LM-10": {arquivo:"lm-10-turma.jpg", legenda:""}
 };
 /* No site publicado (github.io) os espaços sem foto somem. Na prévia aparecem os quadros com o código */
