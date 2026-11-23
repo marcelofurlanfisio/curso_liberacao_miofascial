@@ -341,7 +341,7 @@ footer .metaline a{color:var(--text-link)}
 .h-top{grid-area:top}.h-lead{grid-area:lead}.h-photo{grid-area:photo}.h-cta{grid-area:cta}
 .h-cta .cta-row{margin-top:var(--sp-7)}.h-cta .metaline{margin-top:var(--sp-6)}
 @media (min-width:960px){.lm-hero{grid-template-columns:7fr 5fr;column-gap:var(--sp-11);grid-template-areas:"top photo" "lead photo" "cta photo";align-items:start}.h-photo{align-self:start}}
-@media (max-width:959px){.lm-hero{grid-template-columns:1fr 38%;column-gap:var(--sp-5);grid-template-areas:"top top" "lead photo" "cta cta";align-items:start}.h-photo .tag{display:none}.h-lead{font-size:var(--fs-body-sm);line-height:1.55}.h-photo .foto .ph i,.h-photo .foto .ph small{display:none}}
+@media (max-width:959px){.lm-hero{grid-template-columns:1fr 38%;column-gap:var(--sp-5);grid-template-areas:"top top" "lead photo" "cta photo";align-items:start}.h-photo .tag{display:none}.h-lead{font-size:var(--fs-body-sm);line-height:1.55}.h-photo .foto .ph i,.h-photo .foto .ph small{display:none}}
 
 /* Destaques em cartão, com ícones */
 .highlights{list-style:none;margin:0 0 -56px;padding:var(--sp-6) var(--sp-7);background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-md);display:grid;gap:var(--sp-5);position:relative;z-index:2}
@@ -457,6 +457,56 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
 .kpl .n{flex:0 0 28px;font-family:var(--font-data);font-size:var(--fs-body-sm);font-weight:500;color:var(--c-clay-700);padding-top:2px}
 .kpl h3{font-family:var(--font-ui);font-size:var(--fs-body);font-weight:600;letter-spacing:0}
 .kpl p{margin-top:var(--sp-1);font-size:var(--fs-body-sm)}
+
+/* ===== Ajustes só para celular (abaixo de 960 px). O computador não muda ===== */
+@media (max-width:959px){
+  /* Topo, botões compactos na coluna do texto */
+  .h-photo{grid-row:2 / span 2;align-self:start}
+  .h-cta .cta-row{margin-top:var(--sp-5);gap:var(--sp-2);flex-direction:column;align-items:stretch}
+  .h-cta .cta-row .btn{width:100%;font-size:var(--fs-label);padding:12px 12px;gap:6px;line-height:1.25}
+  .h-cta .cta-row .btn .arrow{width:14px;height:14px}
+  .h-cta .metaline{margin-top:var(--sp-4);font-size:var(--fs-micro);flex-direction:column;gap:2px}
+  .h-cta .metaline span+span::before{content:none}
+
+  /* A verdade, foto ao lado do título */
+  .truth-grid{grid-template-columns:1fr 38%;column-gap:var(--sp-5);row-gap:0;
+    grid-template-areas:"eye eye" "h2 photo" "myths myths" "rule rule" "p p" "quote quote"}
+  .truth-grid > div:first-child{display:contents}
+  .truth-grid .eyebrow{grid-area:eye}
+  .truth-grid h2{grid-area:h2;margin-top:var(--sp-3);font-size:clamp(22px,6vw,28px)}
+  .truth-grid > .foto{grid-area:photo;margin-top:var(--sp-3);--ar:4/5}
+  .truth-grid .myths{grid-area:myths}
+  .truth-grid .rule{grid-area:rule}
+  .truth-grid .truth-p{grid-area:p}
+  .truth-grid .truth-quote{grid-area:quote;margin-top:var(--sp-7)}
+}
+@media (max-width:899px){
+  /* Método, dois cartões lado a lado e o terceiro na largura toda */
+  .steps{grid-template-columns:1fr 1fr;gap:var(--sp-3)}
+  .step{--pad:14px;padding:0 var(--pad) var(--pad)}
+  .step.has-photo .foto{margin:0 calc(-1*var(--pad)) var(--sp-3)}
+  .step h3{font-size:19px}
+  .step p{font-size:13px;line-height:1.5;margin-top:var(--sp-2)}
+  .step .foto .ph i,.step .foto .ph small{display:none}
+  .steps .step:nth-child(3){grid-column:1 / -1;display:grid;grid-template-columns:44% 1fr;column-gap:var(--pad);align-items:center;padding:0 var(--pad) 0 0}
+  .steps .step:nth-child(3) .foto{grid-row:1 / span 2;margin:0;height:100%;aspect-ratio:auto;min-height:150px}
+  .steps .step:nth-child(3) h3{align-self:end;padding-top:var(--pad)}
+  .steps .step:nth-child(3) p{align-self:start;padding-bottom:var(--pad)}
+
+  /* Professor, foto ao lado do nome */
+  #professor .prof{grid-template-columns:1fr 38%;column-gap:var(--sp-5);row-gap:0;
+    grid-template-areas:"eye eye" "h2 photo" "rule photo" "prose photo" "creds creds" "stats stats"}
+  #professor .prof > div{display:contents}
+  #professor .prof .eyebrow{grid-area:eye}
+  #professor .prof h2{grid-area:h2;font-size:clamp(24px,6.4vw,30px)}
+  #professor .prof .rule{grid-area:rule;margin:var(--sp-4) 0}
+  #professor .prof .prose{grid-area:prose}
+  #professor .prof .prose p{font-size:var(--fs-body-sm)}
+  #professor .prof .creds{grid-area:creds}
+  #professor .prof .stats{grid-area:stats;gap:var(--sp-9)}
+  #professor .prof > .foto{grid-area:photo;align-self:start;margin-top:var(--sp-3)}
+  #professor .prof > .foto .ph i,#professor .prof > .foto .ph small{display:none}
+}
 </style>
 </head>
 <body>
