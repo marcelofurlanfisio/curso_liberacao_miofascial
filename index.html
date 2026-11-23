@@ -641,6 +641,124 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
   </div>
 </section>
 
+<!-- ============================================================
+     DEPOIMENTOS DE ALUNOS
+     Cole este bloco inteiro logo ANTES do comentário "11. OFERTA E LISTA DE ESPERA"
+     (ou seja, entre a seção do professor e a seção Investimento).
+     Ele só aparece na página quando houver depoimento aprovado para o curso.
+     Em cada curso, mude só a linha CURSO na parte de configuração do script, no fim deste bloco.
+     ============================================================ -->
+<style>
+.dep-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--sp-6);margin-top:var(--sp-9)}
+.dep-card{flex:1 1 320px;max-width:380px;margin:0;display:flex;flex-direction:column;gap:var(--sp-6);justify-content:space-between;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);padding:var(--sp-7)}
+.dep-text{margin:0;position:relative;padding-top:var(--sp-7)}
+.dep-text::before{content:"\201C";position:absolute;top:-6px;left:-2px;font-family:var(--font-display);font-size:64px;line-height:1;color:var(--text-accent)}
+.dep-text p{margin:0;font-family:var(--font-display);font-size:var(--fs-h3);line-height:1.4;color:var(--text-heading);overflow-wrap:anywhere}
+.dep-who{display:flex;align-items:center;gap:var(--sp-4)}
+.dep-av{flex:0 0 56px;width:56px;height:56px;border-radius:50%;overflow:hidden;background:var(--c-cream-100);box-shadow:inset 0 0 0 1.5px var(--border-default);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;color:var(--text-muted)}
+.dep-av img{width:100%;height:100%;object-fit:cover;display:block}
+.dep-id{display:flex;flex-direction:column;min-width:0}
+.dep-id strong{font-size:var(--fs-body-sm);color:var(--text-heading);overflow-wrap:anywhere}
+.dep-id a{font-size:var(--fs-label);font-weight:600;color:var(--text-accent);text-decoration:none;overflow-wrap:anywhere}
+.dep-id a:hover{text-decoration:underline}
+.dep-more{display:flex;justify-content:center;margin-top:var(--sp-8)}
+#depoimentos[hidden],.dep-more[hidden]{display:none}
+@media (max-width:560px){.dep-card{padding:var(--sp-6);max-width:none}}
+</style>
+
+<section class="sec alt" id="depoimentos" hidden aria-labelledby="dep-titulo">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="eyebrow">Quem já fez</div>
+      <h2 id="dep-titulo">O que os alunos dizem</h2>
+      <div class="rule" aria-hidden="true"></div>
+    </div>
+    <div class="dep-grid" id="dep-grid"></div>
+    <div class="dep-more" id="dep-more" hidden>
+      <button class="btn btn-secondary" type="button" id="dep-mais">Ver mais depoimentos</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  /* ============ CONFIGURAÇÃO ============ */
+  const API   = "https://script.google.com/macros/s/AKfycbzXeBhNlrlYTk_yOsSeKX5FRsN_MBn1Y3Kdg6RMq097zGrYHypfSzCmO-ZJ0ghJ_XvtLQ/exec";
+  const CURSO = "liberacao-miofascial"; // mobilizacao-neural | tmm-coluna | tmm-membros-atm | liberacao-miofascial
+  const INICIAIS = 6;                   // quantos aparecem antes do botão "Ver mais"
+  /* ====================================== */
+
+  const secao = document.getElementById('depoimentos');
+  const grade = document.getElementById('dep-grid');
+  const mais  = document.getElementById('dep-more');
+  if (!secao || !grade) return;
+
+  function cartao(d){
+    const fig = document.createElement('figure');
+    fig.className = 'dep-card';
+
+    const q = document.createElement('blockquote');
+    q.className = 'dep-text';
+    const p = document.createElement('p');
+    p.textContent = d.comentario;           // sempre como texto, nunca como HTML
+    q.append(p);
+
+    const quem = document.createElement('figcaption');
+    quem.className = 'dep-who';
+
+    const av = document.createElement('span');
+    av.className = 'dep-av';
+    const inicial = (String(d.nome || '?').trim()[0] || '?').toUpperCase();
+    if (/^https:\/\//.test(d.foto || '')){
+      const img = document.createElement('img');
+      img.src = d.foto;
+      img.alt = 'Foto de ' + d.nome;
+      img.loading = 'lazy';
+      img.referrerPolicy = 'no-referrer';
+      img.addEventListener('error', () => { av.textContent = inicial; });
+      av.append(img);
+    } else {
+      av.textContent = inicial;
+    }
+
+    const id = document.createElement('span');
+    id.className = 'dep-id';
+    const nome = document.createElement('strong');
+    nome.textContent = d.nome;
+    id.append(nome);
+    if (/^https:\/\/instagram\.com\//.test(d.instagramUrl || '')){
+      const a = document.createElement('a');
+      a.href = d.instagramUrl;
+      a.target = '_blank';
+      a.rel = 'noopener nofollow';
+      a.textContent = '@' + d.instagram;
+      id.append(a);
+    }
+
+    quem.append(av, id);
+    fig.append(q, quem);
+    return fig;
+  }
+
+  fetch(API + '?curso=' + encodeURIComponent(CURSO))
+    .then(r => r.json())
+    .then(j => {
+      const lista = (j && j.ok && Array.isArray(j.depoimentos)) ? j.depoimentos : [];
+      if (!lista.length) return;            // sem depoimento aprovado, a seção nem aparece
+      lista.slice(0, INICIAIS).forEach(d => grade.append(cartao(d)));
+      secao.hidden = false;
+      if (lista.length > INICIAIS){
+        mais.hidden = false;
+        document.getElementById('dep-mais').addEventListener('click', () => {
+          lista.slice(INICIAIS).forEach(d => grade.append(cartao(d)));
+          mais.hidden = true;
+        });
+      }
+    })
+    .catch(() => {});                       // se der erro, o visitante não vê nada diferente
+})();
+</script>
+
 <!-- 11. OFERTA E LISTA DE ESPERA -->
 <section class="sec register-deep" id="investimento">
   <div class="wrap">
