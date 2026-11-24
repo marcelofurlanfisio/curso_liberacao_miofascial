@@ -1103,7 +1103,7 @@ const CONFIG = {
 /* ================== FORMULÁRIO ==================
    Mesmo endereço do Apps Script da página de cadastro. Os dados vão para a aba
    "Interessados" da planilha "Cadastro de interessados - Cursos", com a coluna
-   Origem marcada como "Landing Liberação Miofascial". */
+   Origem marcada como "lm". */
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzX4aUqD10uUJm1Kk-OYs24IW1_TDJQSPaRskQCjI4vt--mpYRHw47cC9zLp7GCT6jd/exec";
 const VERSAO_TERMO = "v1";
 const CURSO_DA_PAGINA = "Liberação Miofascial";
@@ -1256,10 +1256,10 @@ if (AO_VIVO) GRUPOS_DE_FOTOS.forEach(g => { if (!g.every(k => FOTOS[k] && FOTOS[
     const box = e.target.closest('[data-field]');
     if (box && box.classList.contains('invalid')) box.classList.remove('invalid');
   });
-  function origem(){
+  function origem(){ return 'lm'; }
+  function utmParams(){
     const p = new URLSearchParams(location.search);
-    const utm = ['utm_source','utm_medium','utm_campaign'].map(k => p.get(k)).filter(Boolean).join(' / ');
-    return 'Landing Liberação Miofascial' + (utm ? ' · ' + utm : '');
+    return ['utm_source','utm_medium','utm_campaign'].map(k => p.get(k)).filter(Boolean).join(' / ');
   }
 
   form.addEventListener('submit', async e => {
@@ -1275,6 +1275,7 @@ if (AO_VIVO) GRUPOS_DE_FOTOS.forEach(g => { if (!g.every(k => FOTOS[k] && FOTOS[
     data.append('consentimento', 'sim');
     data.append('versao_termo', VERSAO_TERMO);
     data.append('origem', origem());
+    data.append('utm', utmParams());
 
     btn.disabled = true;
     btn.textContent = 'Enviando...';
