@@ -358,6 +358,18 @@ footer .metaline a{color:var(--text-link)}
 .truth{padding-top:calc(var(--sp-13) + 56px)}
 .truth-grid{display:grid;gap:var(--sp-9);align-items:start}
 @media (min-width:960px){.truth-grid{grid-template-columns:7fr 5fr;gap:var(--sp-11)}}
+/* Desktop: a foto começa na altura do título "A técnica funciona..." */
+@media (min-width:960px){
+  .truth-grid{row-gap:0;grid-template-areas:"eye ." "h2 photo" "myths photo" "rule photo" "p photo" "quote quote"}
+  .truth-grid > div:first-child{display:contents}
+  .truth-grid .eyebrow{grid-area:eye}
+  .truth-grid h2{grid-area:h2}
+  .truth-grid > .foto{grid-area:photo;margin-top:var(--sp-3);align-self:start}
+  .truth-grid .myths{grid-area:myths}
+  .truth-grid .rule{grid-area:rule}
+  .truth-grid .truth-p{grid-area:p}
+  .truth-grid .truth-quote{grid-area:quote;margin-top:var(--sp-9)}
+}
 .truth h2{font-size:clamp(28px,3.6vw,var(--fs-h2));margin-top:var(--sp-3);max-width:24ch}
 .truth .myths{margin-top:var(--sp-6)}
 .truth .myths{gap:var(--sp-2)}
