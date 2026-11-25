@@ -768,9 +768,13 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
 <style>
 .dep-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--sp-6);margin-top:var(--sp-9)}
 .dep-card{flex:1 1 320px;max-width:380px;margin:0;display:flex;flex-direction:column;gap:var(--sp-6);justify-content:space-between;background:var(--surface-card);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);padding:var(--sp-7)}
-.dep-text{margin:0;position:relative;padding-top:var(--sp-7)}
-.dep-text::before{content:"\201C";position:absolute;top:-6px;left:-2px;font-family:var(--font-display);font-size:64px;line-height:1;color:var(--text-accent)}
-.dep-text p{margin:0;font-family:var(--font-display);font-size:var(--fs-h3);line-height:1.4;color:var(--text-heading);overflow-wrap:anywhere}
+.dep-text{margin:0;position:relative;padding-top:var(--sp-6)}
+.dep-text::before{content:"\201C";position:absolute;top:-6px;left:-2px;font-family:var(--font-display);font-size:48px;line-height:1;color:var(--text-accent)}
+.dep-text p{margin:0;font-family:var(--font-display);font-size:clamp(16px,1.25vw,18px);line-height:1.5;color:var(--text-heading);overflow-wrap:anywhere}
+/* Depoimento longo mostra 4 linhas com reticências e o botão Ler mais */
+.dep-text p.dep-corte{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+.dep-ler{display:inline-block;margin-top:var(--sp-3);padding:0;border:0;background:none;font-family:var(--font-ui);font-size:var(--fs-label);font-weight:600;color:var(--text-accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.dep-ler[hidden]{display:none}
 .dep-who{display:flex;align-items:center;gap:var(--sp-4)}
 .dep-av{flex:0 0 56px;width:56px;height:56px;border-radius:50%;overflow:hidden;background:var(--c-cream-100);box-shadow:inset 0 0 0 1.5px var(--border-default);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:24px;color:var(--text-muted)}
 .dep-av img{width:100%;height:100%;object-fit:cover;display:block}
@@ -810,6 +814,24 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
   const mais  = document.getElementById('dep-more');
   if (!secao || !grade) return;
 
+  /* Fotos guardadas no Drive chegam como "drive:ID". Aqui viram um endereço de imagem que abre no site. */
+  function fotoUrl(f){
+    f = String(f || '');
+    const m = f.match(/drive(?:%3A|:)([\w-]{20,})/i);
+    if (m) return 'https://lh3.googleusercontent.com/d/' + m[1] + '=w200';
+    return /^https:\/\//.test(f) ? f : '';
+  }
+
+  /* Mostra o Ler mais só nos depoimentos que passam de 4 linhas */
+  function confereCortes(){
+    grade.querySelectorAll('.dep-card').forEach(c => {
+      const p = c.querySelector('.dep-text p'), b = c.querySelector('.dep-ler');
+      if (!p || !b || !p.classList.contains('dep-corte')) return;
+      b.hidden = !(p.scrollHeight > p.clientHeight + 2);
+    });
+  }
+  let tCortes; window.addEventListener('resize', () => { clearTimeout(tCortes); tCortes = setTimeout(confereCortes, 150); });
+
   function cartao(d){
     const fig = document.createElement('figure');
     fig.className = 'dep-card';
@@ -818,7 +840,16 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
     q.className = 'dep-text';
     const p = document.createElement('p');
     p.textContent = d.comentario;           // sempre como texto, nunca como HTML
-    q.append(p);
+    p.className = 'dep-corte';
+    const ler = document.createElement('button');
+    ler.type = 'button'; ler.className = 'dep-ler'; ler.textContent = 'Ler mais'; ler.hidden = true;
+    ler.setAttribute('aria-expanded', 'false');
+    ler.addEventListener('click', () => {
+      const aberto = p.classList.toggle('dep-corte') === false;
+      ler.textContent = aberto ? 'Ler menos' : 'Ler mais';
+      ler.setAttribute('aria-expanded', String(aberto));
+    });
+    q.append(p, ler);
 
     const quem = document.createElement('figcaption');
     quem.className = 'dep-who';
@@ -826,9 +857,10 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
     const av = document.createElement('span');
     av.className = 'dep-av';
     const inicial = (String(d.nome || '?').trim()[0] || '?').toUpperCase();
-    if (/^https:\/\//.test(d.foto || '')){
+    const foto = fotoUrl(d.foto);
+    if (foto){
       const img = document.createElement('img');
-      img.src = d.foto;
+      img.src = foto;
       img.alt = 'Foto de ' + d.nome;
       img.loading = 'lazy';
       img.referrerPolicy = 'no-referrer';
@@ -864,11 +896,14 @@ dialog{border:0;padding:0;color:var(--c-ink-700)}
       if (!lista.length) return;            // sem depoimento aprovado, a seção nem aparece
       lista.slice(0, INICIAIS).forEach(d => grade.append(cartao(d)));
       secao.hidden = false;
+      requestAnimationFrame(confereCortes);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(confereCortes);
       if (lista.length > INICIAIS){
         mais.hidden = false;
         document.getElementById('dep-mais').addEventListener('click', () => {
           lista.slice(INICIAIS).forEach(d => grade.append(cartao(d)));
           mais.hidden = true;
+          requestAnimationFrame(confereCortes);
         });
       }
     })
